@@ -1,0 +1,89 @@
+.waitingRoomContainer {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 700px;
+    height: 700px;
+
+    border: 2px solid #000000;
+
+    border-radius: 10%;
+
+    box-shadow: 10px 15px 7px #000000;
+
+    display: flex;
+    flex-direction: row;
+}
+
+.leftBox {
+    width:350px;
+    height: 700px;
+    border-right: 1px solid #000000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.leftBoxTitle {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.userBox {
+    width: 300px;
+    height: 500px;
+    overflow-y: scroll;
+
+    border: 1px solid #000000;
+
+}
+
+.rightBox {
+    width: 350px;
+    height: 700px;
+    border-left: 1px solid #000000;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.myNickname {
+    font-size: 20px;
+    font-weight: 700;
+
+}
+
+.roomNumberInput {
+    width: 250px;
+    height: 40px;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.joinButton {
+    width: 60px;
+    height: 30px;
+    border-radius: 40px;
+
+    font-weight: 700px;
+    font-size: 16px;
+}
