@@ -86,4 +86,10 @@
 
     font-weight: 700px;
     font-size: 16px;
+    cursor: pointer;
 }
+
+.joinButton:hover {
+    background-color: #6e6e6e;
+}
+

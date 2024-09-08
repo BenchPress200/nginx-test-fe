@@ -1,0 +1,85 @@
+.chatRoomContainer {
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.charRoomHeader {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.exitButton {
+    position: absolute;
+    right: 20px;
+
+    width: 80px;
+    height: 40px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.chatBoxes {
+    width: 100%;
+    height: calc(100% - 80px);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+    gap:40px
+}
+
+.chatBox {
+    margin-top: 200px;
+
+    width: 500px;
+    height: 800px;
+
+    border: 1px solid #000000;
+    border-radius: 40px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chats {
+    width: 500px;
+    height: 700px;
+    border-bottom: 1px solid #000000;
+}
+
+.inputBox {
+    width: 500px;
+    height: 100px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px
+}
+
+.chatInput {
+    width: 345px;
+    height: 20px;
+
+    padding: 5px;
+    border: 1px solid #000000;
+}
+
+.sendButton {
+    width: 50px;
+    height: 30px;
+    cursor: pointer;
+}
