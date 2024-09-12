@@ -8,8 +8,8 @@ function App() {
     <BrowserRouter>
         <Routes>
             <Route exact path="/" element={<Home />}/>
-            <Route exact path="/waiting-room" element={<WaitingRoom />}/>
-            <Route exact path="/chat-room" element={<ChatRoom />}/>
+            <Route exact path="/waiting-room/:nickname" element={<WaitingRoom />}/>
+            <Route exact path="/chat-room/:nickname/:roomName" element={<ChatRoom />}/>
         </Routes>
     </BrowserRouter>
   );
