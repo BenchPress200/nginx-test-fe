@@ -37,5 +37,5 @@ jobs:
             sudo docker pull ${{ secrets.DOCKER_REPO }}:v0.1
             sudo docker stop nginx-test-fe || true
             sudo docker rm nginx-test-fe || true
-            sudo docker run --name nginx-test-fe -d -p 3000:3001
+            sudo docker run --name nginx-test-fe -d -p 3000:3001 ${{ secrets.DOCKER_REPO }}:v0.1
             sudo docker image prune -f
