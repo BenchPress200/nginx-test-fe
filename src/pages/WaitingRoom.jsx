@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { act, useEffect, useState } from 'react';
 import styles from '../styles/WaitingRoom.module.css';
+import { APIs } from '../static';
 
 const WaitingRoom = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const WaitingRoom = () => {
     }
 
     const findActiveUsers = () => {
-        fetch("http://localhost:8080/api/v1/users/active")
+        fetch(APIs.activeUsers)
             .then(response => {
                 console.log(response)
 
@@ -45,7 +46,7 @@ const WaitingRoom = () => {
             }),
         }
 
-        fetch("http://localhost:8080/api/v1/users", option)
+        fetch(APIs.joinUser, option)
             .then(response => {
                 console.log(response)
                 if (response.status === 201) {

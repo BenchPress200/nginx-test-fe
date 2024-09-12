@@ -20,6 +20,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+      
+      - name: Make static.js
+        run: |
+          cd ./src
+          touch ./static.js
+          echo "${{ secrets.STATIC }}" > ./static.js
+        shell: bash
 
       - name: Build and push Docker image
         run: |

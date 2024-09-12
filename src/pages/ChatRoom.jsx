@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import styles from "../styles/ChatRoom.module.css"
 import { Stomp } from "@stomp/stompjs";
 import SockJS from 'sockjs-client'
+import { APIs } from '../static';
 
 const ChatRoom = () => {
     const { nickname, roomName } = useParams();
@@ -18,7 +19,7 @@ const ChatRoom = () => {
     const [open, setOpen] = useState(null);
     
     useEffect(() => {
-        wsRef.current = new WebSocket("ws://localhost:8080/ws");
+        wsRef.current = new WebSocket(APIs.wsConnection);
 
         wsRef.current.onopen = () => {
             console.log("웹소켓 연결 성공");
@@ -29,7 +30,7 @@ const ChatRoom = () => {
             console.error("WebSocket error: ", error);
         };
 
-        const sock = new SockJS('http://localhost:8080/stomp');
+        const sock = new SockJS(APIs.stompConnection);
         stompWs.current = Stomp.over(sock);
 
         
@@ -127,7 +128,7 @@ const ChatRoom = () => {
     }
 
     const exit = async () => {
-        await fetch(`http://localhost:8080/api/v1/users/logout?nickname=${nickname}`)
+        await fetch(`${APIs.logout}?nickname=${nickname}`)
         .then(response => {
             if(response.status !== 200) {
                 alert("유저삭제 실패")
