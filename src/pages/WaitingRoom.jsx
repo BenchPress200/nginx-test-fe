@@ -23,6 +23,7 @@ const WaitingRoom = () => {
                 }
             })
             .then(data => {
+                console.log(data)
                 setActiveUsers(data);
             })
             .catch(error => {
@@ -72,7 +73,11 @@ const WaitingRoom = () => {
                         <div className={styles.leftBoxTitle}>방 접속 유저</div>
 
                         <div className={styles.userBox}>
-                            {activeUsers}
+                            {activeUsers.map((item, index) => (
+                                <div key={index} className={styles.activeUser}>
+                                    [{item.roomName} 번 방] {item.nickname} 
+                                </div>
+                            ))}
                         </div>
 
                     </div>

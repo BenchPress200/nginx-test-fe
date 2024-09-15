@@ -39,10 +39,10 @@
 }
 
 .chatBox {
-    margin-top: 200px;
+    margin-top: 80px;
 
     width: 500px;
-    height: 800px;
+    height: 400px;
 
     border: 1px solid #000000;
     border-radius: 40px;
@@ -55,12 +55,16 @@
 
 .chats {
     width: 500px;
-    height: 700px;
+    height: 300px;
     border-bottom: 1px solid #000000;
 
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    gap:3px;
+
+    overflow-y: scroll;
 }
 
 .inputBox {
@@ -86,15 +90,23 @@
     width: 50px;
     height: 30px;
     cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 700;
 }
 
 .chat {
+    flex-shrink: 0;
     width: 400px;
-    height: 40px;
+    height: 30px;
     border: 1px solid #000000;
+    border-radius: 15px;
 
     display: flex;
     flex-direction: row;
     align-items: center;
     padding: 5px;
+
+    box-shadow: inset 3px 3px 6px rgba(0, 0, 0, 0.2), 
+    inset -3px -3px 6px rgba(255, 255, 255, 0.5);
 }

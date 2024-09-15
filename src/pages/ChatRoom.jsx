@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useRef, useState } from "react";
-import styles from "../styles/ChatRoom.module.css"
+import { useEffect, useRef, useState, React } from "react";
 import { Stomp } from "@stomp/stompjs";
-import SockJS from 'sockjs-client'
 import { APIs } from '../static';
+import styles from "../styles/ChatRoom.module.css"
+import SockJS from 'sockjs-client'
 
 const ChatRoom = () => {
     const { nickname, roomName } = useParams();
@@ -13,10 +13,12 @@ const ChatRoom = () => {
     const [messageInput, setMessageInput] = useState("");
     const [stompChatList, setStompChatList] = useState([]);
     const [chatList, setChatList] = useState([]);
+    const [open, setOpen] = useState(null);
 
     const stompWs = useRef(null);
     const wsRef = useRef(null);
-    const [open, setOpen] = useState(null);
+    const chatContainerRef = useRef(null);
+    const stompChatContainerRef = useRef(null);
     
     useEffect(() => {
         wsRef.current = new WebSocket(APIs.wsConnection);
@@ -48,6 +50,8 @@ const ChatRoom = () => {
         stompWs.current.activate();
 
         return () => {
+            exit()
+
             if (stompWs.current) {
                 stompWs.current.disconnect();
             }
@@ -78,6 +82,22 @@ const ChatRoom = () => {
             sendJoinMessage();
         }
     }, [open]);
+
+    useEffect(() => {
+        // 스크롤을 맨 아래로 유지
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [chatList]);
+
+    useEffect(() => {
+        // STOMP 채팅 스크롤을 맨 아래로 유지
+        if (stompChatContainerRef.current) {
+            stompChatContainerRef.current.scrollTop = stompChatContainerRef.current.scrollHeight;
+        }
+    }, [stompChatList]);
+
+    
 
     const sendJoinMessage = () => {
 
@@ -146,6 +166,8 @@ const ChatRoom = () => {
         setMessageInput(e.target.value);
     }
 
+    
+
 
 
 
@@ -166,7 +188,7 @@ const ChatRoom = () => {
 
                     <div className={styles.chatBox}>
                         <div>No STOMP Chat</div>
-                        <div className={styles.chats}>
+                        <div className={styles.chats} ref={chatContainerRef}>
 
 
                             {chatList.map((item, index) => (
@@ -188,7 +210,7 @@ const ChatRoom = () => {
 
                     <div className={styles.chatBox}>
                         <div>STOMP Chat</div>
-                        <div className={styles.chats}>
+                        <div className={styles.chats} ref={stompChatContainerRef}>
 
                             {stompChatList.map((item, index) => (
                                 <div key={index} className={styles.chat}>
