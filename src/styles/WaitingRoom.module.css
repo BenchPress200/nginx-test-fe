@@ -52,6 +52,10 @@
     align-items: center;
 }
 
+.activeUser {
+    
+}
+
 .rightBox {
     width: 250px;
     height: 500px;

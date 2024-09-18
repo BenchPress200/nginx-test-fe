@@ -49,8 +49,13 @@ const ChatRoom = () => {
 
         stompWs.current.activate();
 
-        return () => {
-            exit()
+        return async () => {
+            await fetch(`${APIs.logout}?nickname=${nickname}`)
+            .then(response => {
+                if(response.status !== 200) {
+                    alert("유저삭제 실패")
+                }
+            })
 
             if (stompWs.current) {
                 stompWs.current.disconnect();
@@ -148,6 +153,8 @@ const ChatRoom = () => {
     }
 
     const exit = async () => {
+        console.log(`${nickname} 퇴장`)
+
         await fetch(`${APIs.logout}?nickname=${nickname}`)
         .then(response => {
             if(response.status !== 200) {
