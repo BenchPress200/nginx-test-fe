@@ -50,6 +50,8 @@ const ChatRoom = () => {
         stompWs.current.activate();
 
         return async () => {
+            sendLeaveMessage();
+
             await fetch(`${APIs.logout}?nickname=${nickname}`)
             .then(response => {
                 if(response.status !== 200) {
@@ -152,16 +154,20 @@ const ChatRoom = () => {
         setMessageInput("");
     }
 
+    const sendLeaveMessage = () => {
+        const message = {
+            id : "leave",
+            roomName: roomName,
+            nickname: nickname
+        }
+
+        const jsonMessage = JSON.stringify(message);
+		console.log('Sending message: ' + jsonMessage);
+		wsRef.current.send(jsonMessage);
+    }
+
     const exit = async () => {
         console.log(`${nickname} 퇴장`)
-
-        await fetch(`${APIs.logout}?nickname=${nickname}`)
-        .then(response => {
-            if(response.status !== 200) {
-                alert("유저삭제 실패")
-            }
-        })
-
         navigate(`/waiting-room/${nickname}`)
     }
 
