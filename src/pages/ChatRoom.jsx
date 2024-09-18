@@ -50,7 +50,7 @@ const ChatRoom = () => {
         stompWs.current.activate();
 
         return async () => {
-            sendLeaveMessage();
+            await sendLeaveMessage();
 
             await fetch(`${APIs.logout}?nickname=${nickname}`)
             .then(response => {
@@ -154,7 +154,7 @@ const ChatRoom = () => {
         setMessageInput("");
     }
 
-    const sendLeaveMessage = () => {
+    const sendLeaveMessage = async () => {
         const message = {
             id : "leave",
             roomName: roomName,
@@ -163,7 +163,7 @@ const ChatRoom = () => {
 
         const jsonMessage = JSON.stringify(message);
 		console.log('Sending message: ' + jsonMessage);
-		wsRef.current.send(jsonMessage);
+		await wsRef.current.send(jsonMessage);
     }
 
     const exit = async () => {
