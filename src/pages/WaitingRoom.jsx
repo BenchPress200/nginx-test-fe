@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { act, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/WaitingRoom.module.css';
 import { APIs } from '../static';
 
