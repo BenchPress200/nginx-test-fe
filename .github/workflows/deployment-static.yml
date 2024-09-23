@@ -37,10 +37,6 @@ jobs:
       - name: Build the project
         run: CI=false npm run build
 
-      - name: Fix SSH permissions
-        run: chmod 600 ${{ secrets.KEY }}
-        shell: bash
-
       - name: Copy files via SSH
         uses: appleboy/scp-action@v0.1.3
         with:
